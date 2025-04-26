@@ -37,12 +37,12 @@ stages:
       size: 182599
     - path: src/model_training.py
       hash: md5
-      md5: 4fb533774fd8f433522ba127b68e8bbc
-      size: 1858
+      md5: de84572378efeea64a42fc1b31f47ae4
+      size: 1948
     outs:
     - path: model/model.pkl
       hash: md5
-      md5: baf0288957fe53ed30746a2e9a5aac78
+      md5: 5fdf6370bc065b900b512083ca418d58
       size: 1058
   model_evaluation:
     cmd: python src/model_testing.py
@@ -53,7 +53,7 @@ stages:
       size: 182599
     - path: model/model.pkl
       hash: md5
-      md5: baf0288957fe53ed30746a2e9a5aac78
+      md5: 5fdf6370bc065b900b512083ca418d58
       size: 1058
     - path: src/model_testing.py
       hash: md5
@@ -62,8 +62,8 @@ stages:
     outs:
     - path: evaluation_metrics.json
       hash: md5
-      md5: 384b870c118ab411e734e18bf3d4b920
-      size: 143
+      md5: 9d1e05e932e41e3db222771862c40b49
+      size: 145
   feature_engineering:
     cmd: python src/feature_engineering.py
     deps:

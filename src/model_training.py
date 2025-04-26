@@ -4,6 +4,9 @@ import os
 import logging
 import pickle 
 from sklearn.linear_model import LogisticRegression
+import yaml
+
+
 os.makedirs('logs',exist_ok=True)
 logger=logging.getLogger()
 logger.setLevel(logging.DEBUG)
@@ -23,6 +26,7 @@ def load_data(data_url):
         return df
     except Exception as e:
         logger.error('url is not correct')
+        return None
 
 def get_model(x:np.ndarray,y:np.ndarray,params:dict)->LogisticRegression:
     logger.info('Data goes to model')
@@ -46,7 +50,10 @@ def main():
     df=load_data(r'C:\Users\DELL\OneDrive\Desktop\MLOps_first_Picture_of_AWS\data\featured_data\f_data.csv')
     x=df.drop('rainfall', axis=1)
     y=df['rainfall']
-    params={'penalty':'l1','C':0.5,'solver':'liblinear'}
+    with open ('params.yaml') as f:
+        p=yaml.safe_load(f)
+        
+    params = p['model_building']
     file_path='model/model.pkl'
     model=get_model(x,y,params)
     save_model(model,file_path)

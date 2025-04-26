@@ -1,0 +1,41 @@
+stages:
+  data_ingestion:
+    cmd: python src/data_ingestion.py  # "python" जोड़ें
+    deps:
+      - src/data_ingestion.py
+      # अगर raw_data.csv कहीं और से आता है (जैसे data/raw/raw_data.csv), तो उसे deps में जोड़ें
+    outs:
+      - data/raw/raw_data.csv
+  
+  data_preprocessing:
+    cmd: python src/data_preprocessing.py  # "python" जोड़ें
+    deps:
+      - src/data_preprocessing.py
+      - data/raw/raw_data.csv  # ✅ data_ingestion का output
+    outs:
+      - data/preprocessed_data/p_data.csv
+
+  feature_engineering:
+    cmd: python src/feature_engineering.py  # "python" जोड़ें
+    deps: 
+      - src/feature_engineering.py
+      - data/preprocessed_data/p_data.csv
+    outs:
+      - data/featured_data/f_data.csv
+
+  model_training:
+    cmd: python src/model_training.py  # "python" जोड़ें
+    deps: 
+      - src/model_training.py
+      - data/featured_data/f_data.csv
+    outs:
+      - model/model.pkl
+
+  model_evaluation:
+    cmd: python src/model_testing.py  # फाइल का नाम ठीक करें
+    deps:
+      - src/model_testing.py
+      - model/model.pkl
+      - data/featured_data/f_data.csv
+    outs:
+      - evaluation_metrics.json  # Folder structure साफ रखें

@@ -5,6 +5,8 @@ import logging
 import json
 import pickle
 from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score
+from dvclive import Live
+import yaml  
 
 # Logging setup
 os.makedirs('logs', exist_ok=True)
@@ -66,7 +68,23 @@ def save_metrics(metrics: dict, file_path: str) -> None:
 
 # Example usage
 if __name__ == "__main__":
+    
     model = load_model(r'C:\Users\DELL\OneDrive\Desktop\MLOps_first_Picture_of_AWS\model\model.pkl')
     df = load_data(r'C:\Users\DELL\OneDrive\Desktop\MLOps_first_Picture_of_AWS\data\featured_data\f_data.csv')
     metrics = evaluation(model, df, target='rainfall')
+    y_real= df['rainfall']
+    x=df.drop(['rainfall'],axis=1)
+    y_test=model.predict(x)
+    with open ('params.yaml') as f:
+        p=yaml.safe_load(f)
+        
+    params = p['model_building']
+    
+    with Live(save_dvc_exp=True) as live:
+        live.log_metric('accuracy', accuracy_score(y_real,y_test))
+        live.log_metric('precision',precision_score(y_real,y_test))
+        live.log_metric('recall', recall_score(y_test, y_test))
+        live.log_params(params)
+    
     save_metrics(metrics, 'evaluation_metrics.json')
+    

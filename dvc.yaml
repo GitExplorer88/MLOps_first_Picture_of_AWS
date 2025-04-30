@@ -40,3 +40,10 @@ stages:
     - data/featured_data/f_data.csv
     outs:
     - evaluation_metrics.json    # Folder structure साफ रखें
+params:
+- dvclive/params.yaml
+metrics:
+- dvclive/metrics.json
+plots:
+- dvclive/plots/metrics:
+    x: step

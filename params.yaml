@@ -1,4 +1,4 @@
 model_building:
   penalty: l2
-  C: 0.9
+  C: 0.8
   solver: liblinear

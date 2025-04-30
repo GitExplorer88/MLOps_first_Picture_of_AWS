@@ -47,7 +47,7 @@ def save_model(model,filepath:str)-> None:
         
         
 def main():
-    df=load_data(r'C:\Users\DELL\OneDrive\Desktop\MLOps_first_Picture_of_AWS\data\featured_data\f_data.csv')
+    df=load_data(r'C:\Users\DELL\MLOps_first_Picture_of_AWS\data\featured_data\f_data.csv')
     x=df.drop('rainfall', axis=1)
     y=df['rainfall']
     with open ('params.yaml') as f:

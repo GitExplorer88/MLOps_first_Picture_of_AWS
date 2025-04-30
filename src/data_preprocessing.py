@@ -54,7 +54,7 @@ def save_data(df: pd.DataFrame):
     
     
 def main():
-    df=data_loader(r'C:\Users\DELL\OneDrive\Desktop\MLOps_first_Picture_of_AWS\data\raw\raw_data.csv')
+    df=data_loader(r'C:\Users\DELL\MLOps_first_Picture_of_AWS\data\raw\raw_data.csv')
     df=processor(df)
     save_data(df)
 

@@ -69,8 +69,8 @@ def save_metrics(metrics: dict, file_path: str) -> None:
 # Example usage
 if __name__ == "__main__":
     
-    model = load_model(r'C:\Users\DELL\OneDrive\Desktop\MLOps_first_Picture_of_AWS\model\model.pkl')
-    df = load_data(r'C:\Users\DELL\OneDrive\Desktop\MLOps_first_Picture_of_AWS\data\featured_data\f_data.csv')
+    model = load_model(r'C:\Users\DELL\MLOps_first_Picture_of_AWS\model\model.pkl')
+    df = load_data(r'C:\Users\DELL\MLOps_first_Picture_of_AWS\data\featured_data\f_data.csv')
     metrics = evaluation(model, df, target='rainfall')
     y_real= df['rainfall']
     x=df.drop(['rainfall'],axis=1)

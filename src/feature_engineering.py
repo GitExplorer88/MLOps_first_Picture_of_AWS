@@ -49,7 +49,7 @@ def save_data(df: pd.DataFrame):
 
 
 def main():
-    df=load_data(r'C:\Users\DELL\OneDrive\Desktop\MLOps_first_Picture_of_AWS\data\preprocessed_data\p_data.csv')
+    df=load_data(r'C:\Users\DELL\MLOps_first_Picture_of_AWS\data\preprocessed_data\p_data.csv')
     df=feature_engineer(df)
     save_data(df)
 
